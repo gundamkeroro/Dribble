@@ -10,4 +10,13 @@
     <string name="drawer_menu_home">Home</string>
     <string name="drawer_menu_likes">Likes</string>
     <string name="drawer_menu_buckets">Bucket</string>
+    <string name="activity_login_btn_text">Log into zhuaibo</string>
+    <string name="activity_login_icon">zhuaibo icon</string>
+    <string name="auth_activity_title">Log into zhuaibo</string>
+    <string name="user_profile_picture">User profile picture</string>
+    <string name="logout">Log out</string>
+    <string name="like">Like</string>
+    <string name="bucket">Bucket</string>
+    <string name="share">Share</string>
+    <string name="shot_author_picture">Shot auth picture</string>
 </resources>
