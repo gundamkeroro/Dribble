@@ -2,6 +2,7 @@ package com.example.fengxinlin.zhuaibo.view;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import com.example.fengxinlin.zhuaibo.R;
 import com.example.fengxinlin.zhuaibo.view.bucket_list.BucketListFragment;
 import com.example.fengxinlin.zhuaibo.view.shot_list.ShotListFragment;
 import com.example.fengxinlin.zhuaibo.zhuaibo.zhuaibo;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,21 +80,21 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout.setDrawerListener(drawerToggle);
 
-        View headerView = navigationView.getHeaderView(0);
+//        View headerView = navigationView.getHeaderView(0);
+//
+//        ((TextView) headerView.findViewById(R.id.nav_header_user_name)).setText(
+//                zhuaibo.getCurrentUser().name);
 
-        ((TextView) headerView.findViewById(R.id.nav_header_user_name)).setText(
-                zhuaibo.getCurrentUser().name);
-
-        headerView.findViewById(R.id.nav_header_logout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                zhuaibo.logout(MainActivity.this);
-
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+//        headerView.findViewById(R.id.nav_header_logout).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                zhuaibo.logout(MainActivity.this);
+//
+//                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -129,6 +131,28 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 return false;
+            }
+        });
+        setupNavHeader();
+    }
+
+    private void setupNavHeader() {
+        View headerView = navigationView.getHeaderView(0);
+
+        ((TextView) headerView.findViewById(R.id.nav_header_user_name)).setText(
+                zhuaibo.getCurrentUser().name);
+
+        ((SimpleDraweeView) headerView.findViewById(R.id.nav_header_user_picture))
+                .setImageURI(Uri.parse(zhuaibo.getCurrentUser().avatar_url));
+
+        headerView.findViewById(R.id.nav_header_logout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                zhuaibo.logout(MainActivity.this);
+
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

@@ -2,6 +2,13 @@
 <items version="2" >
 
     <item
+        jar="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.13.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="db1ed61a6eaa9d50ff214daf79ed485877aaa58a">
+        <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-drawee-0.13.0_6af3481daaf446f919853e9e9308076a45d2b27d/classes.dex" />
+    </item>
+    <item
         jar="/Users/fengxinlin/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
         jumboMode="true"
         revision="24.0.1"
@@ -23,6 +30,27 @@
         <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.0.1_9b9c88088f7cdf229f9e6c0c3db44f4f6cc45ef9/classes.dex" />
     </item>
     <item
+        jar="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.13.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="4985047e64ea8daf00e923aac6386de67fbd5676">
+        <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-fresco-0.13.0_469a0f0bbf3582f512d866348a793c4fb9c0ec41/classes.dex" />
+    </item>
+    <item
+        jar="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/libs/internal_impl-23.2.1.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.2.1_6e66e7456d3ed1c7f34b659b2f117021cab79e9a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/fengxinlin/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-tasks-1.4.0_0349ff989588a97655cc868ecf2ec51915fa7fef/classes.dex" />
+    </item>
+    <item
         jar="/Users/fengxinlin/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
         jumboMode="true"
         revision="24.0.1"
@@ -37,18 +65,46 @@
         <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.1.1_fa76f2056cdba587c063badd293bad02bbd8ddbc/classes.dex" />
     </item>
     <item
+        jar="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/0.13.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="e818c866cdd1e9b94d54a3ffbd7420dca384746a">
+        <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-imagepipeline-base-0.13.0_d1bbee655fb79e7ac979594eaf34477342ab84c3/classes.dex" />
+    </item>
+    <item
         jar="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         revision="24.0.1"
-        sha1="f0d765d934a54af3a25ddf9a19d248dfa0b1b8b5">
+        sha1="b3504568594d08eb0955978649200edbfd015b10">
         <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_c9ca01841b849fafb36b89cb1c07d9ca54ac4051/classes.dex" />
     </item>
     <item
-        jar="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jar="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.13.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
-        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.1.1_27a56bf82578dd771db0c52f0aab9841f1b6c389/classes.dex" />
+        sha1="9bab39d73226491b969ef7ffebeae2e6e525e98f">
+        <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-fbcore-0.13.0_47de6872779a1f2f121212bd33c59afd7a3ac8d1/classes.dex" />
+    </item>
+    <item
+        jar="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.13.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="0aa38f91d7e6c9d5983d2148741de45b6cc5949b">
+        <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-imagepipeline-0.13.0_7bef05658586936d169d2037a53ed64f5c2a37c2/classes.dex" />
+    </item>
+    <item
+        jar="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.1/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.2.1_e765953dc543ed3127c152eab07b53212da77a19/classes.dex" />
+    </item>
+    <item
+        jar="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/exploded-aar/com.facebook.fresco/animated-gif/0.13.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="017cbad0ef8876fc041eb28b642a33c3762fe774">
+        <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-animated-gif-0.13.0_c767a7b9f1aeb944a2bfa1f046a130738d0488fb/classes.dex" />
     </item>
     <item
         jar="/Users/fengxinlin/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
@@ -58,18 +114,18 @@
         <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.4.1_5fa71d717a8673c23ba22431f5e4ecd78b185fd2/classes.dex" />
     </item>
     <item
-        jar="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
-        jumboMode="true"
-        revision="24.0.1"
-        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.1.1_27cd58e4f77b2c40be5bcf38723116293ed0c38f/classes.dex" />
-    </item>
-    <item
         jar="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.0.1/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="74ca46e7da11e3d065eb64cdbe6568a7ed74c211">
         <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.jakewharton-butterknife-8.0.1_1015ddd4c44c8eb6143a91f5759e37713084383d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/exploded-aar/com.facebook.fresco/animated-base/0.13.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="2bea506ec2a27189b7d3198ea11431304c8f7549">
+        <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-animated-base-0.13.0_9c57c91ba857de31ebd01dd817a9f09156e239eb/classes.dex" />
     </item>
     <item
         jar="/Users/fengxinlin/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
@@ -96,7 +152,7 @@
         jar="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         revision="24.0.1"
-        sha1="c215a986387b46e02a328b210f832127804eee7f">
+        sha1="2cf46bb031389e7c5cff5bd68fc3b3bddc88dd37">
         <dex dex="/Users/fengxinlin/AndroidStudioProjects/zhuaibo/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_70a1e4aa28c34337314761085a8683183b459f82/classes.dex" />
     </item>
 

@@ -1,5 +1,6 @@
 package com.example.fengxinlin.zhuaibo.view.shot_detail;
 
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -51,6 +52,7 @@ class ShotAdapter extends RecyclerView.Adapter {
                 shotDetailViewHolder.title.setText(shot.title);
                 shotDetailViewHolder.authorName.setText(shot.user.name);
                 shotDetailViewHolder.description.setText(shot.description);
+                shotDetailViewHolder.authorPicture.setImageURI(Uri.parse(shot.user.avatar_url));
                 shotDetailViewHolder.likeCount.setText(String.valueOf(shot.likes_count));
                 shotDetailViewHolder.bucketCount.setText(String.valueOf(shot.buckets_count));
                 shotDetailViewHolder.viewCount.setText(String.valueOf(shot.views_count));
