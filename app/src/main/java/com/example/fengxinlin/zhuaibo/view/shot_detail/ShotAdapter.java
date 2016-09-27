@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 
 import com.example.fengxinlin.zhuaibo.R;
 import com.example.fengxinlin.zhuaibo.model.Shot;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
 
 /**
  * Created by fengxinlin on 9/23/16.
@@ -46,6 +48,11 @@ class ShotAdapter extends RecyclerView.Adapter {
         final int viewType = getItemViewType(position);
         switch (viewType) {
             case VIEW_TYPE_SHOT_IMAGE:
+                DraweeController controller = Fresco.newDraweeControllerBuilder()
+                        .setUri(Uri.parse(shot.getImageUrl()))
+                        .setAutoPlayAnimations(true)
+                        .build();
+                ((ImageViewHolder) holder).image.setController(controller);
                 break;
             case VIEW_TYPE_SHOT_INFO:
                 InfoViewHolder shotDetailViewHolder = (InfoViewHolder) holder;

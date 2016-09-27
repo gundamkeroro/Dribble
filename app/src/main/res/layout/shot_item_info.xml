@@ -96,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_large">
 
-        <com.facebook.drawee.view.DraweeView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/shot_author_picture"
             android:layout_width="@dimen/shot_author_picture_size"
             android:layout_height="@dimen/shot_author_picture_size"
