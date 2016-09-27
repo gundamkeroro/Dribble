@@ -19,4 +19,5 @@
     <string name="bucket">Bucket</string>
     <string name="share">Share</string>
     <string name="shot_author_picture">Shot auth picture</string>
+    <string name="share_shot">Share this amazing shot</string>
 </resources>

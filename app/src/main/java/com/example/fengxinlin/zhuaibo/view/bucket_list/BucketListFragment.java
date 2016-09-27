@@ -1,10 +1,12 @@
 package com.example.fengxinlin.zhuaibo.view.bucket_list;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.os.AsyncTaskCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,10 +16,12 @@ import android.view.ViewGroup;
 import com.example.fengxinlin.zhuaibo.R;
 import com.example.fengxinlin.zhuaibo.model.Bucket;
 import com.example.fengxinlin.zhuaibo.view.base.SpaceItemDecoration;
+import com.example.fengxinlin.zhuaibo.zhuaibo.zhuaibo;
+import com.google.gson.JsonSyntaxException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +34,8 @@ public class BucketListFragment extends Fragment {
     RecyclerView recyclerView;
     @BindView(R.id.fab)
     FloatingActionButton fab;
+
+    BucketListAdapter adapter;
 
     public static BucketListFragment newInstance() {
         return new BucketListFragment();
@@ -49,7 +55,14 @@ public class BucketListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.spacing_medium)));
 
-        BucketListAdapter adapter = new BucketListAdapter(fakeData());
+        adapter = new BucketListAdapter(new ArrayList<Bucket>(), new BucketListAdapter.LoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                AsyncTaskCompat.executeParallel(
+                        new LoadBucketTask(adapter.getDataCount() / zhuaibo.COUNT_PER_PAGE + 1)
+                );
+            }
+        });
         recyclerView.setAdapter(adapter);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -60,16 +73,48 @@ public class BucketListFragment extends Fragment {
         });
     }
 
-    private List<Bucket> fakeData() {
-        List<Bucket> bucketList = new ArrayList<>();
+    //    private List<Bucket> fakeData() {
+//        List<Bucket> bucketList = new ArrayList<>();
+//
+//        Random random = new Random();
+//        for (int i = 0; i < 20; ++i) {
+//            Bucket bucket = new Bucket();
+//            bucket.name = "Bucket" + i;
+//            bucket.shots_count = random.nextInt(10);
+//            bucketList.add(bucket);
+//        }
+//        return bucketList;
+//    }
+    private class LoadBucketTask extends AsyncTask<Void, Void, List<Bucket>> {
 
-        Random random = new Random();
-        for (int i = 0; i < 20; ++i) {
-            Bucket bucket = new Bucket();
-            bucket.name = "Bucket" + i;
-            bucket.shots_count = random.nextInt(10);
-            bucketList.add(bucket);
+        int page;
+
+        public LoadBucketTask(int page) {
+            this.page = page;
         }
-        return bucketList;
+
+        @Override
+        protected List<Bucket> doInBackground(Void... params) {
+            // this method is executed on non-UI thread
+            try {
+                return zhuaibo.getUserBuckets(page);
+            } catch (IOException | JsonSyntaxException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(List<Bucket> buckets) {
+            // this method is executed on UI thread
+            if (buckets != null) {
+                adapter.append(buckets);
+                adapter.setShowLoading(buckets.size() == zhuaibo.COUNT_PER_PAGE);
+            } else {
+                Snackbar.make(getView(), "Error!", Snackbar.LENGTH_LONG).show();
+            }
+        }
     }
 }
+
+

@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.example.fengxinlin.zhuaibo.model.Bucket;
 import com.example.fengxinlin.zhuaibo.model.Shot;
 import com.example.fengxinlin.zhuaibo.model.User;
 import com.example.fengxinlin.zhuaibo.utils.ModelUtils;
@@ -25,6 +26,8 @@ import okhttp3.Response;
 public class zhuaibo {
     private static final String TAG = "Dribbble API";
 
+    public static final int COUNT_PER_PAGE = 12;
+
     private static final String API_URL = "https://api.dribbble.com/v1/";
     private static final String SHOTS_END_POINT = API_URL + "shots";
     private static final String USER_END_POINT = API_URL + "user";
@@ -36,6 +39,7 @@ public class zhuaibo {
 
     private static final TypeToken<List<Shot>> SHOT_LIST_TYPE = new TypeToken<List<Shot>>(){};
     private static final TypeToken<User> USER_TYPE = new TypeToken<User>(){};
+    private static final TypeToken<List<Bucket>> BUCKET_LIST_TYPE = new TypeToken<List<Bucket>>(){};
 
     private static OkHttpClient client = new OkHttpClient();
 
@@ -125,5 +129,10 @@ public class zhuaibo {
     public static List<Shot> getShots(int page) throws IOException, JsonSyntaxException {
         String url = SHOTS_END_POINT + "?page=" + page;
         return parseResponse(makeGetRequest(url), SHOT_LIST_TYPE);
+    }
+
+    public static List<Bucket> getUserBuckets(int page) throws IOException, JsonSyntaxException {
+        String url = USER_END_POINT + "/" + "buckets?page=" + page;
+        return parseResponse(makeGetRequest(url), BUCKET_LIST_TYPE);
     }
 }

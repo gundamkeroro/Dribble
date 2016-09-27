@@ -1,5 +1,7 @@
 package com.example.fengxinlin.zhuaibo.view.shot_detail;
 
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -63,6 +65,12 @@ class ShotAdapter extends RecyclerView.Adapter {
                 shotDetailViewHolder.likeCount.setText(String.valueOf(shot.likes_count));
                 shotDetailViewHolder.bucketCount.setText(String.valueOf(shot.buckets_count));
                 shotDetailViewHolder.viewCount.setText(String.valueOf(shot.views_count));
+                shotDetailViewHolder.shareButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        share(view.getContext());
+                    }
+                });
                 break;
         }
     }
@@ -79,6 +87,14 @@ class ShotAdapter extends RecyclerView.Adapter {
         } else {
             return VIEW_TYPE_SHOT_INFO;
         }
+    }
+
+    private void share(Context context) {
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, shot.title + " " + shot.html_url);
+        shareIntent.setType("text/plain");
+        context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_shot)));
     }
 }
 
