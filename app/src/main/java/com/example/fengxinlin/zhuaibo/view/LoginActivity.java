@@ -5,14 +5,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.widget.TextView;
 
 import com.example.fengxinlin.zhuaibo.R;
 import com.example.fengxinlin.zhuaibo.zhuaibo.auth.Auth;
 import com.example.fengxinlin.zhuaibo.zhuaibo.auth.AuthActivity;
 import com.example.fengxinlin.zhuaibo.zhuaibo.zhuaibo;
-import com.google.gson.JsonSyntaxException;
 import com.example.fengxinlin.zhuaibo.zhuaibo.zhuaiboException;
+import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
 
@@ -34,6 +36,10 @@ public class LoginActivity extends AppCompatActivity{
         zhuaibo.init(this);
 
         if (!zhuaibo.isLoggedIn()) {
+            CookieSyncManager cookieSyncMngr =
+                    CookieSyncManager.createInstance(this);
+            CookieManager cookieManager = CookieManager.getInstance();
+            cookieManager.removeAllCookie();
             loginBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
