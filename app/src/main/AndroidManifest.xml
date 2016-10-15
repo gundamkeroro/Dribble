@@ -21,7 +21,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.MainActivity" />
+        <activity android:name=".view.MainActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
 
         <activity android:name=".view.shot_detail.ShotActivity" />
         <activity android:name=".view.bucket_list.BucketListActivity" />
