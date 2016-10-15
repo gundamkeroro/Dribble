@@ -16,7 +16,6 @@
             android:id="@+id/shot_image"
             android:layout_width="match_parent"
             android:layout_height="240dp"
-            fresco:actualImageScaleType="centerCrop"
             fresco:placeholderImage="@drawable/shot_placeholder"
             fresco:placeholderImageScaleType="centerCrop"/>
 

@@ -1,18 +1,20 @@
 package com.example.fengxinlin.zhuaibo.view.shot_detail;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.fengxinlin.zhuaibo.R;
 import com.example.fengxinlin.zhuaibo.model.Shot;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.interfaces.DraweeController;
+import com.example.fengxinlin.zhuaibo.utils.ImageUtils;
 
 /**
  * Created by fengxinlin on 9/23/16.
@@ -20,11 +22,13 @@ import com.facebook.drawee.interfaces.DraweeController;
 class ShotAdapter extends RecyclerView.Adapter {
 
     private static final int VIEW_TYPE_SHOT_IMAGE = 0;
-    private static final int VIEW_TYPE_SHOT_INFO = 1;
+    private static final int VIEW_TYPE_SHOT_DETAIL = 1;
 
+    private final ShotFragment shotFragment;
     private final Shot shot;
 
-    public ShotAdapter(@NonNull Shot shot) {
+    public ShotAdapter(@NonNull ShotFragment shotFragment, @NonNull Shot shot) {
+        this.shotFragment = shotFragment;
         this.shot = shot;
     }
 
@@ -33,13 +37,13 @@ class ShotAdapter extends RecyclerView.Adapter {
         View view;
         switch (viewType) {
             case VIEW_TYPE_SHOT_IMAGE:
-                view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.shot_item_image, parent, false);
-                return new ImageViewHolder(view);
-            case VIEW_TYPE_SHOT_INFO:
-                view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.shot_item_info, parent, false);
-                return new InfoViewHolder(view);
+                view = LayoutInflater.from(getContext())
+                        .inflate(R.layout.list_item_shot_image, parent, false);
+                return new ShotImageViewHolder(view);
+            case VIEW_TYPE_SHOT_DETAIL:
+                view = LayoutInflater.from(getContext())
+                        .inflate(R.layout.list_item_shot_detail, parent, false);
+                return new ShotDetailViewHolder(view);
             default:
                 return null;
         }
@@ -50,27 +54,65 @@ class ShotAdapter extends RecyclerView.Adapter {
         final int viewType = getItemViewType(position);
         switch (viewType) {
             case VIEW_TYPE_SHOT_IMAGE:
-                DraweeController controller = Fresco.newDraweeControllerBuilder()
-                        .setUri(Uri.parse(shot.getImageUrl()))
-                        .setAutoPlayAnimations(true)
-                        .build();
-                ((ImageViewHolder) holder).image.setController(controller);
+                ImageUtils.loadShotImage(shot, ((ShotImageViewHolder) holder).image);
                 break;
-            case VIEW_TYPE_SHOT_INFO:
-                InfoViewHolder shotDetailViewHolder = (InfoViewHolder) holder;
+            case VIEW_TYPE_SHOT_DETAIL:
+                final ShotDetailViewHolder shotDetailViewHolder = (ShotDetailViewHolder) holder;
                 shotDetailViewHolder.title.setText(shot.title);
                 shotDetailViewHolder.authorName.setText(shot.user.name);
-                shotDetailViewHolder.description.setText(shot.description);
-                shotDetailViewHolder.authorPicture.setImageURI(Uri.parse(shot.user.avatar_url));
+
+                shotDetailViewHolder.description.setText(Html.fromHtml(
+                        shot.description == null ? "" : shot.description));
+                shotDetailViewHolder.description.setMovementMethod(LinkMovementMethod.getInstance());
+
                 shotDetailViewHolder.likeCount.setText(String.valueOf(shot.likes_count));
                 shotDetailViewHolder.bucketCount.setText(String.valueOf(shot.buckets_count));
                 shotDetailViewHolder.viewCount.setText(String.valueOf(shot.views_count));
-                shotDetailViewHolder.shareButton.setOnClickListener(new View.OnClickListener() {
+
+                ImageUtils.loadUserPicture(getContext(),
+                        shotDetailViewHolder.authorPicture,
+                        shot.user.avatar_url);
+
+                shotDetailViewHolder.likeCount.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        share(view.getContext());
+                    public void onClick(View v) {
+                        Toast.makeText(getContext(), "Like count clicked", Toast.LENGTH_SHORT).show();
                     }
                 });
+                shotDetailViewHolder.bucketCount.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getContext(), "Bucket count clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                shotDetailViewHolder.likeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        shotFragment.like(shot.id, !shot.liked);
+                    }
+                });
+                shotDetailViewHolder.bucketButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        shotFragment.bucket();
+                    }
+                });
+                shotDetailViewHolder.shareButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        shotFragment.share();
+                    }
+                });
+
+                Drawable likeDrawable = shot.liked
+                        ? ContextCompat.getDrawable(getContext(), R.drawable.ic_favorite_zhuaibo_18dp)
+                        : ContextCompat.getDrawable(getContext(), R.drawable.ic_favorite_border_black_18dp);
+                shotDetailViewHolder.likeButton.setImageDrawable(likeDrawable);
+
+                Drawable bucketDrawable = shot.bucketed
+                        ? ContextCompat.getDrawable(getContext(), R.drawable.ic_inbox_dribbble_18dp)
+                        : ContextCompat.getDrawable(getContext(), R.drawable.ic_inbox_black_18dp);
+                shotDetailViewHolder.bucketButton.setImageDrawable(bucketDrawable);
                 break;
         }
     }
@@ -85,16 +127,12 @@ class ShotAdapter extends RecyclerView.Adapter {
         if (position == 0) {
             return VIEW_TYPE_SHOT_IMAGE;
         } else {
-            return VIEW_TYPE_SHOT_INFO;
+            return VIEW_TYPE_SHOT_DETAIL;
         }
     }
 
-    private void share(Context context) {
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, shot.title + " " + shot.html_url);
-        shareIntent.setType("text/plain");
-        context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_shot)));
+    @NonNull
+    private Context getContext() {
+        return shotFragment.getContext();
     }
 }
-

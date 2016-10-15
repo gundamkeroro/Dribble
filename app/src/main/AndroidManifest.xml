@@ -21,13 +21,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.MainActivity"/>
+        <activity android:name=".view.MainActivity" />
+
+        <activity android:name=".view.shot_detail.ShotActivity" />
+        <activity android:name=".view.bucket_list.BucketListActivity" />
+        <activity android:name=".view.bucket_list.BucketShotListActivity" />
 
         <activity
             android:name=".zhuaibo.auth.AuthActivity"
             android:windowSoftInputMode="adjustPan"/>
 
-        <activity android:name=".view.shot_detail.ShotActivity"/>
 
     </application>
 

@@ -12,6 +12,7 @@ import com.example.fengxinlin.zhuaibo.zhuaibo.auth.Auth;
 import com.example.fengxinlin.zhuaibo.zhuaibo.auth.AuthActivity;
 import com.example.fengxinlin.zhuaibo.zhuaibo.zhuaibo;
 import com.google.gson.JsonSyntaxException;
+import com.example.fengxinlin.zhuaibo.zhuaibo.zhuaiboException;
 
 import java.io.IOException;
 
@@ -30,7 +31,6 @@ public class LoginActivity extends AppCompatActivity{
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        // load access token from shared preference
         zhuaibo.init(this);
 
         if (!zhuaibo.isLoggedIn()) {
@@ -57,17 +57,14 @@ public class LoginActivity extends AppCompatActivity{
                 @Override
                 public void run() {
                     try {
-                        // this is a network call and it's time consuming
-                        // that's why we're doing this in a non-UI thread
                         String token = Auth.fetchAccessToken(authCode);
-
-                        // store access token in SharedPreferences
                         zhuaibo.login(LoginActivity.this, token);
-
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     } catch (IOException | JsonSyntaxException e) {
+                        e.printStackTrace();
+                    } catch (zhuaiboException e) {
                         e.printStackTrace();
                     }
                 }
